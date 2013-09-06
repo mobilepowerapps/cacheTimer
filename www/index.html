@@ -22,7 +22,7 @@
 //border-color:red;
 }
 </style>
-<script src="http://debug.phonegap.com/target/target-script-min.js#anonymous009"></script>
+<script src="http://debug.phonegap.com/target/target-script-min.js#anonymouscpt"></script>
 <script>
 //
 ////////////////////////// SDcard cache
@@ -498,6 +498,21 @@ var intvVideo = [
 	{ time:5, clock:5, msg:"done", msgColor:"black", clockColor:"black", mp3:"hooray", vid:""},
 	{ close:true }
 ] ;
+// simple video, no mp3
+var intvVideoOnly = [
+	{ header:"Video" },
+	{ time:5, clock:5, msg:"Get Ready for Push ups", 
+		btnCancel: true },
+	{ css:{id:"intvPopup", attr:"background-image", val:"linear-gradient(#DFEBFF,#9864F3)" }},
+	{ time:5, clock:10,  msg: "Push Up Workout", msgColor:"red", clockColor:"blue", vid:"workout",
+		btnCancel:false, btnStart:true, btnStop:true, btnReset: true, btnClose: true },
+	{ time:2, msg:"5 Seconds ..."},
+	{ time:1, msg:"hurry ..."},
+	{ time:1, msg:"faster ..."},
+	{ time:1, msg:"FASTER!!! ..."},
+	{ time:5, clock:5, msg:"done", msgColor:"black", clockColor:"black", vid:""},
+	{ close:true }
+] ;
 
 // a testing one
 var intvTest = [
@@ -531,6 +546,7 @@ var intvTest = [
        <a data-role="button" href="#intvPopup" data-transition="flow" onclick="intv.events = intvSimple ;" data-rel="popup">Simple PopUp</a>
        <a data-role="button" href="#intvPopup" data-transition="fade" onclick="intv.events = intvTwoStep ;" data-rel="popup">Two Step PopUp</a>
        <a data-role="button" href="#intvPopup" data-transition="flip" onclick="intv.events = intvVideo ;" data-rel="popup">Video PopUp</a>
+       <a data-role="button" href="#intvPopup" data-transition="flip" onclick="intv.events = intvVideoOnly ;" data-rel="popup">Video Only PopUp</a>
        <a data-role="button" href="#intvPopup" onclick="intv.events = intvTest ;" data-rel="popup">Test PopUp</a>
        <a data-role="button" href="#page1">Button</a>
         <a data-role="button" href="#page1">Button</a>
