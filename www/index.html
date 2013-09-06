@@ -526,6 +526,12 @@ var intvTest = [
 			btnClose:true, btnReset:false, btnStop: false, btnStart: false
 	}
 ] ;
+//clock 10 sec
+var intv10sec = [
+	{ time:10, clock:10, msg:"10 Seconds",
+			btnReset:true, btnStop: true, btnStart: true },
+	{ btnClose:true, btnReset:false, btnStop: false, btnStart: false}
+] ;
 
 
 
@@ -547,6 +553,7 @@ var intvTest = [
        <a data-role="button" href="#intvPopup" data-transition="fade" onclick="intv.events = intvTwoStep ;" data-rel="popup">Two Step PopUp</a>
        <a data-role="button" href="#intvPopup" data-transition="flip" onclick="intv.events = intvVideo ;" data-rel="popup">Video PopUp</a>
        <a data-role="button" href="#intvPopup" data-transition="flip" onclick="intv.events = intvVideoOnly ;" data-rel="popup">Video Only PopUp</a>
+       <a data-role="button" href="#intvPopup" data-transition="flip" onclick="intv.events = intv10sec ;" data-rel="popup">10 Seconds</a>
        <a data-role="button" href="#intvPopup" onclick="intv.events = intvTest ;" data-rel="popup">Test PopUp</a>
        <a data-role="button" href="#page1">Button</a>
         <a data-role="button" href="#page1">Button</a>
