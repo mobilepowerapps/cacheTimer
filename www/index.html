@@ -35,11 +35,10 @@
 // if it's in cache it returns the SDcard url
 // eg. "hooray.mp3" returns either "http://cpt.aws.af.cm/cpt/hooray.mp3" of "file:///mnt/sdcard/cpt/hooray.mp3"
 
-var cache = {
+var Xcache = {
 	url: "http://cpt.aws.af.cm/cpt",	// web server
-	dir: "cpt",							// dir for sdcard
+	dir: "cpt",							// directory on sdcard
 	
-	// file exist get from server
 	findFile: function( f ){
 		var url = encodeURI( cache.url + "/" + f ) ;
 		var result = url ;
@@ -77,9 +76,9 @@ var cache = {
 } ;
 
 // browser version - no phonegap, only from server.
-var Xcache = {
+var cache = {
 	url: "http://cpt.aws.af.cm/cpt",	// web server
-	// file exist get from server
+
 	findFile: function( f ){
 		return cache.url+"/"+ f ;
 		}
@@ -267,13 +266,13 @@ console.log("ticks:"+intv.ticks+
 // media //////////////////
 
 	mp3Loop: function( mp3 ) {
-		$( "<audio id='"+mp3+"' src='"+cache.findFile( mp3+".mp3")+"' loop type='audio/mpeg' />" ).insertAfter("#intvMp3Loop") ;
+		$( "<audio id='" +mp3+ "' src='" +cache.findFile( mp3+".mp3")+ "' loop type='audio/mpeg' />" ).insertAfter("#intvMp3Loop") ;
 		document.getElementById( mp3 ).load() ;	
 		document.getElementById( mp3 ).play() ;	
 		},
 	mp3Load: function( mp3 ) {
 		if(	document.getElementById( mp3 ) == null ) 
-			$( "<audio id='"+mp3+"' src='"+cache.findFile( mp3+".mp3")+"' type='audio/mpeg' />" ).insertAfter("#intvMp3") ;
+			$( "<audio id='" +mp3+ "' src='" +cache.findFile( mp3+".mp3")+ "' type='audio/mpeg' />" ).insertAfter("#intvMp3") ;
 		document.getElementById( mp3 ).load() ;	
 		},
 	mp3Play: function( mp3 ) {
@@ -553,7 +552,7 @@ All intv elements are required
 	<div id="intvContent" data-role="content" >
 		<div id="intvTextContainer">
 			<h1 id="intvMsg">Get Ready ...</h1>
-			<h1 id="intvClock">..</h1>
+			<h1 id="intvClock" style="text-size:6.0em;">..</h1>
 		</div>
 		<video id="intvVid" width="497" height="298"> </video>
 
