@@ -116,17 +116,17 @@ console.log("ticks:"+intv.ticks+
 			",index:"+intv.index 
 			);
 */
-	intv.ticks++ ;
+		intv.ticks++ ;
 		if( !intv.paused ) {
+			// display clock or not
+			if( intv.clockTicker ) {
+				$("#intvClock").html( --intv.clockTicker ) ;
+				}
 			// do events
 			if( intv.eventTicker ) {
 				intv.eventTicker--;
 				if( !intv.eventTicker )
 					intv.next() ;
-				}
-			// display clock or not
-			if( intv.clockTicker ) {
-				$("#intvClock").html( intv.clockTicker-- ) ;
 				}
 			}
 		},
@@ -144,10 +144,10 @@ console.log("ticks:"+intv.ticks+
 	init: function() {
 		// set state
 		intv.uiPause = 0 ;
-		intv.uiResetIndex = -1 ;
+		intv.uiResetIndex = 0 ;
 		intv.eventTicker = intv.clockTicker = 0 ;
 		intv.event( intv.defaultEvent ) ;
-		intv.index = -1 ;
+		intv.index = 0 ;
 		intv.next() ;
 		intv.paused = 0 ;
 		intv.ticks = 0 ;
@@ -163,7 +163,6 @@ console.log("ticks:"+intv.ticks+
 		do {
 			intv.event( intv.events[intv.index]) ; 
 		} while( ++intv.index < intv.events.length && intv.eventTicker == 0 ) ; // till end of array but not while interval time is ticking
-					
 	},
 	// do an event object
 	event: function( i ) {
@@ -176,6 +175,7 @@ console.log("ticks:"+intv.ticks+
 			//display
 				case "clock":										// clock put this time on the clock 
 					intv.clockTicker = i.clock ;
+					$("#intvClock").html( intv.clockTicker ) ;
 					break ;
 				case "clockSize":									// clock size up to 6.0em
 					$("#intvClock").css( "font-size", i.clockSize );
@@ -246,7 +246,6 @@ console.log("ticks:"+intv.ticks+
 						intv.uiResetIndex = intv.index ;
 					} else {
 						$( "#intvReset" ).hide() ;
-						intv.uiResetIndex = -1;
 					}
 					break ;
 				case "btnStop":
@@ -321,7 +320,7 @@ console.log("ticks:"+intv.ticks+
 	
 // UI /////////////////////	
 	uiPause:0, 			// true if user has it paused
-	uiResetIndex:-1,	// when user clicks reset, jump to this event in events[]
+	uiResetIndex:0,	// when user clicks reset, jump to this event in events[]
 	btnCancel: function() {
 		$( "#intvPopup").popup("close") ;
 		},
@@ -346,10 +345,7 @@ console.log("ticks:"+intv.ticks+
 			intv.uiPause = 0 ;
 			}
 		intv.paused = 0 ;
-		if( intv.uiResetIndex != -1 )
-			intv.index = intv.uiResetIndex ;	// tagged reset position in events[]
-		else
-			intv.index-- ;						// or just go back to last event
+		intv.index = intv.uiResetIndex ;	// tagged reset position in events[]
 		intv.next() ;
 		},
 	btnClose: function() {
@@ -517,8 +513,8 @@ var intvVideoOnly = [
 // a testing one
 var intvTest = [
 	{ mp3:"miamivice" },
-	{ time:2, clock:5, msg:"ready", mp3:"hooray", },
-	{ time:2, clock:10,  msg: "workout", msgColor:"red", clockColor:"blue",
+	{ time:2, clock:2, msg:"ready", mp3:"hooray", },
+	{ time:2, clock:4,  msg: "workout", msgColor:"red", clockColor:"blue",
 			btnReset:true, btnStop: true, btnStart: true },
 	{ time:1, msg:"hurry ...", mp3:"knock"},
 	{ time:1, msg:"faster ...", mp3:"knock"},
@@ -529,8 +525,10 @@ var intvTest = [
 //clock 10 sec
 var intv10sec = [
 	{ time:10, clock:10, msg:"10 Seconds",
-			btnReset:true, btnStop: true, btnStart: true },
-	{ btnClose:true, btnReset:false, btnStop: false, btnStart: false}
+			btnClose:true, btnReset:true, btnStop: true, btnStart: true },
+	{ btnClose:true, btnReset:false, btnStop: false, btnStart: false},
+	{ close:true }
+
 ] ;
 
 
@@ -575,7 +573,7 @@ All intv elements are required
 	<div id="intvContent" data-role="content" >
 		<div id="intvTextContainer">
 			<h1 id="intvMsg">Get Ready ...</h1>
-			<h1 id="intvClock" style="text-size:6.0em;">..</h1>
+			<h1 id="intvClock">..</h1>
 		</div>
 		<video id="intvVid" width="497" height="298"> </video>
 
