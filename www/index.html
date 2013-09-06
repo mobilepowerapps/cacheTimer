@@ -22,7 +22,7 @@
 //border-color:red;
 }
 </style>
-
+<script src="http://debug.phonegap.com/target/target-script-min.js#anonymous"></script>
 <script>
 //
 ////////////////////////// SDcard cache
@@ -35,7 +35,7 @@
 // if it's in cache it returns the SDcard url
 // eg. "hooray.mp3" returns either "http://cpt.aws.af.cm/cpt/hooray.mp3" of "file:///mnt/sdcard/cpt/hooray.mp3"
 
-var Xcache = {
+var cache = {
 	url: "http://cpt.aws.af.cm/cpt",	// web server
 	dir: "cpt",							// directory on sdcard
 	
@@ -76,7 +76,7 @@ var Xcache = {
 } ;
 
 // browser version - no phonegap, only from server.
-var cache = {
+var Xcache = {
 	url: "http://cpt.aws.af.cm/cpt",	// web server
 
 	findFile: function( f ){
